@@ -5,4 +5,7 @@ add_executable(MyApp
     main.cpp
     Strategy.cpp
     Player.cpp
+    Game.cpp
+    inputHandler.cpp
+    inputParser.cpp
 )

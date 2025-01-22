@@ -4,8 +4,8 @@ void Player::fight(Player* enemyPlayer){
     Move move = this->strategy->execute(this, enemyPlayer);
     Move enemyMove = enemyPlayer->strategy->execute(enemyPlayer, this);
     if(move == Move::Cooperation && enemyMove == Move::Cooperation){
-        this->points+=6;
-        enemyPlayer->points+=6;
+        this->points+=3;
+        enemyPlayer->points+=3;
     }
     else if(move == Move::Rivalry && enemyMove == Move::Rivalry){
         this->points+=1;
