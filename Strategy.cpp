@@ -24,3 +24,35 @@ Move TitForTatStrategy::execute(Player* player, Player* enemyPlayer){
 Move RandomStrategy::execute(Player* player, Player* enemyPlayer){
     return rand() % 2 == 0 ? Move::Cooperation : Move::Rivalry;
 }
+Move TitForTwoTatsStrategy::execute(Player* player, Player* enemyPlayer) {
+    if (enemyPlayer->previousMoves.size()>=2 && enemyPlayer->previousMoves[enemyPlayer->previousMoves.size() - 1]==Move::Rivalry && enemyPlayer->previousMoves[enemyPlayer->previousMoves.size() - 2] ==Move::Rivalry){
+        return Move::Rivalry;
+    }
+    else {
+        return Move::Cooperation;
+    }
+}
+Move Cooperate_Rival::execute(Player* player, Player* enemyPlayer) {
+    if (player->previousMoves.size()>=1 && player->previousMoves.back()==Move::Cooperation) {
+        return Move::Rivalry;
+    }
+    else {
+        return Move::Cooperation;
+    }
+}
+Move Rival_Cooperate::execute(Player* player, Player* enemyPlayer) {
+    if (player->previousMoves.size()>=1 && player->previousMoves.back()==Move::Cooperation) {
+        return Move::Cooperation;
+    }
+    else {
+        return Move::Rivalry;
+    }
+}
+Move Rival_If_Enemy_Cooperates::execute(Player* player, Player* enemyPlayer) {
+    if (enemyPlayer->previousMoves.size()>=2 && enemyPlayer->previousMoves[enemyPlayer->previousMoves.size() - 1]==Move::Cooperation && enemyPlayer->previousMoves[enemyPlayer->previousMoves.size() - 2] ==Move::Cooperation){
+        return Move::Rivalry;
+    }
+    else {
+        return Move::Cooperation;
+    }
+}

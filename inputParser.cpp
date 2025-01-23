@@ -50,14 +50,17 @@ void InputParser::selectStrategiesForPlayers(){
             std::cout << "2 - Always Rivalry" << std::endl;
             std::cout << "3 - Tit for Tat" << std::endl;
             std::cout << "4 - Random" << std::endl;
-
+            std::cout << "5 - Tit for Two Tats" << std::endl;
+            std::cout << "6 - Cooperate, then Rival" << std::endl;
+            std::cout << "7 - Rival, then Cooperate" << std::endl;
+            std::cout << "8 - Rival if Enemy Cooperates" << std::endl;
             while (true) {
                 std::string strategyInput;
                 std::cout << "Enter your choice for Player " << i << ": ";
                 std::cin >> strategyInput;
                 if (isNumber(strategyInput)) {
                     strategyChoice = std::stoi(strategyInput);
-                    if (strategyChoice >= 1 && strategyChoice <= 4) {
+                    if (strategyChoice >= 1 && strategyChoice <= 8) {
                         switch (strategyChoice) {
                             case 1:
                                 strategies->push_back(new AlwaysCooperateStrategy());
@@ -71,17 +74,29 @@ void InputParser::selectStrategiesForPlayers(){
                             case 4:
                                 strategies->push_back(new RandomStrategy());
                                 break;
+                            case 5:
+                                strategies->push_back(new TitForTwoTatsStrategy());
+                                break;
+                            case 6:
+                                strategies->push_back(new Cooperate_Rival());
+                            break;
+                            case 7:
+                                strategies->push_back(new Rival_Cooperate());
+                            break;
+                            case 8:
+                                strategies->push_back(new Rival_If_Enemy_Cooperates());
+                            break;
                         }
                         break;
                     }
                     else
                     {
-                        std::cout << "Invalid choice, please select between 1 and 4." << std::endl;
+                        std::cout << "Invalid choice, please select between 1 and 8." << std::endl;
                     }
                 }
                 else
                 {
-                    std::cout << "Invalid argument, please input a number between 1 and 4." << std::endl;
+                    std::cout << "Invalid argument, please input a number between 1 and 8." << std::endl;
                 }
             }
         }
