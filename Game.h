@@ -1,4 +1,6 @@
 #pragma once
+#ifndef GAME_H
+#define GAME_H
 #include "Player.h"
 #include "Strategy.h"
 #include <vector>
@@ -15,9 +17,8 @@ class Game{
     void play();
     void runRound(int roundNumber);
     Game(int NumberOfPlayers, int NumberOfRounds, std::vector<Strategy*> Strategies, int maxThreads){
-        // this->NumberOfPlayers = NumberOfPlayers;
         this->currentRound = 0;
-        this->endCondition = new RoundEndCondition();
+        this->endCondition = new PointsEndCondition(1000);
         this->maxThreads = maxThreads;
         for(int i = 0; i < NumberOfPlayers; i++){
             if(i<Strategies.size()){
@@ -27,6 +28,6 @@ class Game{
                 this->Players.push_back(new Player(i, RandomStrategyFactory::createStrategy()));
             }
         }
-        // this->Strategies = Strategies;
     }
 };
+#endif

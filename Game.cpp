@@ -35,7 +35,7 @@ void Game::runRound(int roundNumber) {
 }
 
 void Game::play() {
-    while(!this->endCondition->isEnd(this->currentRound)) {
+    while(!this->endCondition->isEnd(this)) {
         runRound(this->currentRound);
     }
     for (auto player : this->Players) {

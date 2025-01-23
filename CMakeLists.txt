@@ -8,4 +8,5 @@ add_executable(MyApp
     Game.cpp
     inputHandler.cpp
     inputParser.cpp
+    EndCondition.cpp
 )
