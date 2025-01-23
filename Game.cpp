@@ -4,33 +4,40 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <chrono>
+#include <algorithm>
 
 std::mutex mtx;
 
-void runRound(Game* game, int roundNumber) {
-    std::lock_guard<std::mutex> lock(mtx);
-    for (int j = 0; j < game->Players.size(); j++) {
-        for (int k = j + 1; k < game->Players.size(); k++) {
-            game->Players[j]->fight(game->Players[k]);
-        }
-    }
-}
-
-void Game::play() {
+void Game::runRound(int roundNumber) {
+    std::cout << "Round " << this->currentRound << " started" << std::endl;
     std::vector<std::thread> threads;
-
-    for (int i = 0; i < this->NumberOfRounds; i++) {
-        threads.push_back(std::thread(runRound, this, i));
+    int playersPerThread = this->Players.size()/ this->maxThreads;
+    if (playersPerThread == 0) {
+        playersPerThread = 1;
     }
-
-
+    for (size_t start = 0; start < Players.size(); start += playersPerThread) {
+        size_t end = std::min(start + playersPerThread, Players.size());
+        threads.emplace_back([this, start, end]() {
+            for (size_t i = start; i < end; i++) {
+                for (size_t j = i + 1; j < Players.size(); j++) {
+                    Players[i]->fight(Players[j]);
+                }
+            }
+        });
+    }
+    
     for (auto& t : threads) {
         t.join();
     }
-    threads.clear();
+    
+    this->currentRound++;
+}
 
-
-    std::lock_guard<std::mutex> lock(mtx);
+void Game::play() {
+    while(!this->endCondition->isEnd(this->currentRound)) {
+        runRound(this->currentRound);
+    }
     for (auto player : this->Players) {
         std::cout << "Player " << player->Id<< " Strategy: "<<player->strategy->name << " points: " << player->points << std::endl;
     }

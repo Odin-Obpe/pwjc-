@@ -5,11 +5,17 @@
 #include <tuple>
 #include <iostream>
 
-std::tuple<int, int> InputParser::ParseInput(std::vector<std::string> input, std::vector<Strategy*>& strategies){
+std::tuple<int, int, int> InputParser::ParseInput(std::vector<std::string> input, std::vector<Strategy*>& strategies){
+    if (input.size() < 3) {
+        std::cout << "Not enough arguments. Using default thread count of 4." << std::endl;
+        this->NumberOfThreads = 4;
+    } else {
+        this->NumberOfThreads = std::stoi(input[2]);
+    }
     this->NumberOfPlayers = std::stoi(input[0]);
     this->NumberOfRounds = std::stoi(input[1]);
     this->strategies = &strategies;
-    return std::make_tuple(this->NumberOfPlayers, this->NumberOfRounds);
+    return std::make_tuple(this->NumberOfPlayers, this->NumberOfRounds, this->NumberOfThreads);
 }
 
 bool isNumber(const std::string& str) {
