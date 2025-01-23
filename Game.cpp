@@ -32,6 +32,6 @@ void Game::play() {
 
     std::lock_guard<std::mutex> lock(mtx);
     for (auto player : this->Players) {
-        std::cout << "Player " << player->Id << " points: " << player->points << std::endl;
+        std::cout << "Player " << player->Id<< " Strategy: "<<player->strategy->name << " points: " << player->points << std::endl;
     }
 }
