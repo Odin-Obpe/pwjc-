@@ -2,13 +2,12 @@
 #include <iostream>
 #include <mutex>
 
-std::mutex Player::playerMutex;
-
 void Player::fight(Player* enemyPlayer) {
+    std::lock_guard<std::mutex> lock(this->playerMutex);
     Move move = this->strategy->execute(this, enemyPlayer);
+    std::lock_guard<std::mutex> enemyLock(enemyPlayer->playerMutex);
     Move enemyMove = enemyPlayer->strategy->execute(enemyPlayer, this);
-    
-    std::lock_guard<std::mutex> lock(playerMutex);
+    // std::cout << "Player " << this->Id << " move: " << move << " Enemy Player " << enemyPlayer->Id << " move: " << enemyMove << std::endl;
     
     if (move == Move::Cooperation && enemyMove == Move::Cooperation) {
         this->points += 3;

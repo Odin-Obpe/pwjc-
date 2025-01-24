@@ -9,7 +9,7 @@
 #include "inputParser.h"
 #include "Game.h"
 #include "memory"
-
+#include <chrono>
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +24,11 @@ int main(int argc, char *argv[])
     std::cout << std::get<2>(parsedInput) << std::endl;
     inputParser.selectStrategiesForPlayers();
     Game game(std::get<0>(parsedInput), std::get<1>(parsedInput), Strategies, std::get<2>(parsedInput));
+    auto start = std::chrono::high_resolution_clock::now();
     game.play();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "Time taken: " << duration.count() << " seconds" << std::endl;
     return 0;
 }
 

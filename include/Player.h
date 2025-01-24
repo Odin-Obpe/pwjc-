@@ -8,7 +8,7 @@
 
 class Player {
     private:
-        static std::mutex playerMutex;  // Static mutex for all players
+        std::mutex playerMutex;  // Static mutex for all players
         
     public:
         int Id;
