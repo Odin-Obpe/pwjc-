@@ -8,7 +8,6 @@ bool RoundEndCondition::isEnd(Game* game) {
 }
 
 bool PointsEndCondition::isEnd(Game* game) {
-    std::cout << "PointsEndCondition::isEnd called" << std::endl;  // Debug line
     int maxPoints = this->points;
     int currentMax = 0;
     for(auto player : game->Players){
