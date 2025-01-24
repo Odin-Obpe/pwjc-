@@ -35,7 +35,7 @@ Move TitForTwoTatsStrategy::execute(Player* player, Player* enemyPlayer) {
     }
 }
 Move Cooperate_Rival::execute(Player* player, Player* enemyPlayer) {
-    if (!player->previousMoves.empty()>=1 && player->previousMoves.back()==Move::Cooperation) {
+    if (!player->previousMoves.empty() && player->previousMoves.back()==Move::Cooperation) {
         return Move::Rivalry;
     }
     else {
@@ -43,7 +43,7 @@ Move Cooperate_Rival::execute(Player* player, Player* enemyPlayer) {
     }
 }
 Move Rival_Cooperate::execute(Player* player, Player* enemyPlayer) {
-    if (!player->previousMoves.empty()>=1 && player->previousMoves.back()==Move::Cooperation) {
+    if (!player->previousMoves.empty() && player->previousMoves.back()==Move::Cooperation) {
         return Move::Cooperation;
     }
     else {
