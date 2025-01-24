@@ -41,17 +41,17 @@ public:
 };
 class Cooperate_Rival: public Strategy {
 public:
-    Cooperate_Rival() : Strategy("Rival, then cooperate") {}
+    Cooperate_Rival() : Strategy("Rival, then Cooperate") {}
     Move execute(Player* player, Player* enemyPlayer) override;
 };
 class Rival_Cooperate: public Strategy {
 public:
-    Rival_Cooperate() : Strategy("Cooperate, then rival") {}
+    Rival_Cooperate() : Strategy("Cooperate, then Rival") {}
     Move execute(Player* player, Player* enemyPlayer) override;
 };
 class Rival_If_Enemy_Cooperates: public Strategy {
 public:
-    Rival_If_Enemy_Cooperates() : Strategy("TitForTwoTats") {}
+    Rival_If_Enemy_Cooperates() : Strategy("Rival if Enemy Cooperates") {}
     Move execute(Player* player, Player* enemyPlayer) override;
 };
 
