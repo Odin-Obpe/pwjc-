@@ -5,7 +5,7 @@
 #include <vector>
 #include "enuim.h"
 #include <mutex>
-
+#include <unordered_map>
 class Player {
     private:
         std::mutex playerMutex;  // Static mutex for all players
@@ -16,6 +16,7 @@ class Player {
         int points;
         std::vector<Move> previousMoves;
         void fight(Player* enemyPlayer);
+        std::unordered_map<int, std::vector<Move>> opponentMoves;
         
         Player(int Id, Strategy* strategy) {
             this->Id = Id;

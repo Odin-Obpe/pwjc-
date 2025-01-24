@@ -26,4 +26,6 @@ void Player::fight(Player* enemyPlayer) {
     
     this->previousMoves.push_back(move);
     enemyPlayer->previousMoves.push_back(enemyMove);
+    this->opponentMoves[enemyPlayer->Id].push_back(enemyMove);
+    enemyPlayer->opponentMoves[this->Id].push_back(move);
 }
