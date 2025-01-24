@@ -38,7 +38,5 @@ void Game::play() {
     while(!this->endCondition->isEnd(this)) {
         runRound(this->currentRound);
     }
-    for (auto player : this->Players) {
-        std::cout << "Player " << player->Id<< " Strategy: "<<player->strategy->name << " points: " << player->points << std::endl;
-    }
+    showResults.showResults(this->Players);
 }

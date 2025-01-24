@@ -5,6 +5,7 @@
 #include "Strategy.h"
 #include <vector>
 #include "EndCondition.h"
+#include "showResults.h"
 
 class Game{
     private:
@@ -14,6 +15,8 @@ class Game{
     std::vector<Player*> Players;
     int currentRound;
     EndCondition* endCondition;
+    ShowResults showResults;
+
     void play();
     void runRound(int roundNumber);
     Game(int NumberOfPlayers, int NumberOfRounds, std::vector<Strategy*> Strategies, int maxThreads){
