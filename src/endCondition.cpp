@@ -4,7 +4,7 @@
 #include <iostream>
 
 bool RoundEndCondition::isEnd(Game* game) {
-    return game->currentRound == 9;
+    return game->currentRound == this->roundNum;
 }
 
 bool PointsEndCondition::isEnd(Game* game) {

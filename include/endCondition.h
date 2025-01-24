@@ -12,8 +12,10 @@ class EndCondition {
 
 class RoundEndCondition : public EndCondition {
     public:
-    RoundEndCondition() : EndCondition() {}
+    RoundEndCondition(int roundNum) : EndCondition(), roundNum(roundNum) {}
     bool isEnd(Game* game) override;
+    private:
+    int roundNum;
 };
 
 

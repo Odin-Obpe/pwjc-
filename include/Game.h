@@ -18,7 +18,7 @@ class Game{
     void runRound(int roundNumber);
     Game(int NumberOfPlayers, int NumberOfRounds, std::vector<Strategy*> Strategies, int maxThreads){
         this->currentRound = 0;
-        this->endCondition = new PointsEndCondition(1000);
+        this->endCondition = new RoundEndCondition(NumberOfRounds);
         this->maxThreads = maxThreads;
         for(int i = 0; i < NumberOfPlayers; i++){
             if(i<Strategies.size()){
