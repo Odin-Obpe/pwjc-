@@ -10,7 +10,7 @@
 std::mutex mtx;
 
 void Game::runRound(int roundNumber) {
-    std::cout << "Round " << this->currentRound << " started" << std::endl;
+    std::cout << "Round " << this->currentRound+1 << " started" << std::endl;
     std::vector<std::thread> threads;
     int playersPerThread = this->Players.size()/ this->maxThreads;
     if (playersPerThread == 0) {
