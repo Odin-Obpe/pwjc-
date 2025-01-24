@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Strategy.h"
 #include <vector>
-#include "EndCondition.h"
+#include "endCondition.h"
 #include "showResults.h"
 
 class Game{

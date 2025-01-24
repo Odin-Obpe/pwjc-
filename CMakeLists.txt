@@ -12,6 +12,6 @@ add_executable(MyApp
     src/Game.cpp
     src/inputHandler.cpp
     src/inputParser.cpp
-    src/EndCondition.cpp
+    src/endCondition.cpp
     src/ShowResults.cpp
 )

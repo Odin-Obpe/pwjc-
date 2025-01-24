@@ -1,4 +1,4 @@
-#include "EndCondition.h"
+#include "endCondition.h"
 #include "Game.h"
 #include "algorithm"
 #include <iostream>
